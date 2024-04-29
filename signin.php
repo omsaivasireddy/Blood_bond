@@ -41,14 +41,14 @@
 		 	 	
 		 	 	$_SESSION['user_id']=$row['id'];
 		 	 	$_SESSION['name']=$row['name'];
-		 	 	$_SESSION['email']=$row['email'];
-		 	 	$_SESSION['user_id']=$row['id'];
-		 	 	header('Location:user/index.php');
+		 	 	$_SESSION['save_life_date']=$row['save_life_date'];
+		 	 	
+		 	 	header('Location: user/index.php');
 		 	 }
 		 }
 		 else{
             $submitError='<div class="alert alert-danger alert-dismissible fade show" role="alert">
-	  <strong>Sorry user doest not exists.Please enter valid email or password.</strong>
+	  <strong>Sorry user does not exists.Please enter valid email or password.</strong>
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	  </button>
