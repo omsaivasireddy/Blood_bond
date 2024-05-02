@@ -1,6 +1,7 @@
 <?php
 
 include 'include/header.php';
+global $dbPassword;
 
 if (
 	isset($_SESSION['user_id']) &&
@@ -10,24 +11,7 @@ if (
 
 
 
-	$sql = "SELECT * FROM donor  where id=" . $_SESSION['user_id'];
-	$result = mysqli_query($connection, $sql);
-	if (mysqli_num_rows($result) > 0) {
-		while ($row = mysqli_fetch_assoc($result)) {
-			$userID = $row['id'];
-			$name = $row['name'];
-			$blood_group = $row['blood_group'];
-			$gender = $row['gender'];
-			$email = $row['email'];
-			$contact = $row['contact_no'];
-			$city = $row['city'];
-
-			$dob = $row['dob'];
-			$date = explode("-", $dob);
-			$dbPassword = $row['password'];
-
-		}
-	}
+	
 	
 	if (isset($_POST['submit'])) {
 
@@ -230,6 +214,24 @@ if (
 
 
 
+	}
+	$sql = "SELECT * FROM donor  where id=" . $_SESSION['user_id'];
+	$result = mysqli_query($connection, $sql);
+	if (mysqli_num_rows($result) > 0) {
+		while ($row = mysqli_fetch_assoc($result)) {
+			$userID = $row['id'];
+			$name = $row['name'];
+			$blood_group = $row['blood_group'];
+			$gender = $row['gender'];
+			$email = $row['email'];
+			$contact = $row['contact_no'];
+			$city = $row['city'];
+
+			$dob = $row['dob'];
+			$date = explode("-", $dob);
+			$dbPassword = $row['password'];
+
+		}
 	}
 	if (isset($_POST['update_pass'])) 
 	{
@@ -787,10 +789,13 @@ if (
 			</div>
 
 
+
+		
 			<div class="card col-md-6 offset-md-3">
 
 				<!-- Display Message -->
 				<?php if(isset($deleteAccountError)) echo $deleteAccountError;
+				
 				?>
 
 				<div class="panel panel-default" style="padding: 20px;">
