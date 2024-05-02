@@ -1,6 +1,6 @@
 <?php
 
-include ('include.config.php');
+include('include/config.php');
 
 
 
@@ -12,7 +12,7 @@ if ((isset($_GET['city']) && !empty($_GET['city'])) && (isset($_GET['blood_group
 
 
 
-	$sql = "SELECT * FROM donor WHERE city='$city' or blood_group='$blood_group'";
+	$sql = "SELECT * FROM donor WHERE city='$city' and blood_group='$blood_group'";
 	$result = mysqli_query($connection, $sql);
 	if (mysqli_num_rows($result) > 0) {
 		while ($row = mysqli_fetch_assoc($result)) {

@@ -100,7 +100,7 @@
 
 
 
-			$sql="SELECT * FROM donor WHERE city='$city' or blood_group='$blood_group'";
+			$sql="SELECT * FROM donor WHERE city='$city' and blood_group='$blood_group'";
    $result=mysqli_query($connection,$sql);
    if(mysqli_num_rows($result)>0){
    	while($row=mysqli_fetch_assoc($result)){
@@ -165,7 +165,7 @@
 	include ('include/footer.php');
 
 ?>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$(function(){
    $("#search").on('click',function(){
 
@@ -176,7 +176,7 @@
          $.ajax({
             type:'GET',
             url:'ajaxsearch.php',
-            data:{city:city,blood_group:blood_group},
+            data:{city:city,blood_group,blood_group},
             success:function(data){
             	if(!data.error){
             		$("#data").html(data);
@@ -190,9 +190,9 @@
 
 
 	});
-</script> -->
+</script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(document).ready(function(){
         $("#search").on('click', function(){
             var city = $("#city").val();
@@ -211,4 +211,4 @@
             });
         });
 	});
-</script>
+</script> -->

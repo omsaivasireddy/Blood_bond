@@ -116,6 +116,8 @@ if (isset($_POST['submit'])) {
 	  </button>
 	</div>';
 		}
+		//password input check
+
 		if (isset($_POST['password']) && !empty($_POST['password']) && isset($_POST['c_password']) && !empty($_POST['c_password'])) {
 			if (strlen($_POST['password']) >= 6) {
 				if ($_POST['password'] == $_POST['c_password']) {
@@ -147,6 +149,7 @@ if (isset($_POST['submit'])) {
 	  </button>
 	</div>';
 		}
+		//email input check
 		if (isset($_POST['email']) && !empty($_POST['email'])) {
 			$pattern = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
 			if (preg_match($pattern, $_POST['email'])) {

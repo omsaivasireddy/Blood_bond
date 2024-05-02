@@ -7,11 +7,12 @@
 
 	
 
-	include 'include/sidebar.php';
+	
 	$sql="SELECT * FROM donor  where id=".$_SESSION['user_id'];
    $result=mysqli_query($connection,$sql);
    if(mysqli_num_rows($result)>0){
 	while($row=mysqli_fetch_assoc($result)){
+		$userID=$row['id'];
 		$name=$row['name'];
 		$blood_group=$row['blood_group'];
 		$gender=$row['gender'];
@@ -21,11 +22,272 @@
 
 		$dob=$row['dob'];
 		$date=explode("-",$dob);
+		$dbpassword=$row['password'];
 
-
-	}
+        }
    }
+   if (isset($_POST['submit'])) {
+	
+		if (isset($_POST['name']) && !empty($_POST['name'])) {
+			if (preg_match('/^[A-Za-z\s]+$/', $_POST['name'])) {
+				$name = $_POST['name'];
+			} else {
+				$nameError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>Only lower, upper case, and space characters are allowed</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>';
 
+			}
+		} else {
+			$nameError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>Please fill the name field.</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>';
+		}
+		if (isset($_POST['blood_group']) && !empty($_POST['blood_group'])) {
+			$blood_group = $_POST['blood_group'];
+		} else {
+			$blood_groupError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>Please select your blood_group.</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>';
+		}
+		if (isset($_POST['gender']) && !empty($_POST['gender'])) {
+			$gender = $_POST['gender'];
+		} else {
+			$genderError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>Please select your gender.</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>';
+		}
+		if (isset($_POST['day']) && !empty($_POST['day'])) {
+			$day = $_POST['day'];
+		} else {
+			$dayError = '<div class="alert alert-danger alert-dismissible   fade show" role="alert">
+	      <strong>Please select day.</strong>
+	      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+	       </button>
+	</div>';
+		}
+		if (isset($_POST['month']) && !empty($_POST['month'])) {
+			$month = $_POST['month'];
+		} else {
+			$monthError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	     <strong>Please select month.</strong>
+	      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		   <span aria-hidden="true">&times;</span>
+	     </button>
+	</div>';
+		}
+		if (isset($_POST['year']) && !empty($_POST['year'])) {
+			$year = $_POST['year'];
+		} else {
+			$yearError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		  <strong>Please select year.</strong>
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+	</div>';
+		}
+
+		if (isset($_POST['city']) && !empty($_POST['city'])) {
+			if (preg_match('/^[A-Za-z\s]+$/', $_POST['city'])) {
+				$city = $_POST['city'];
+			} else {
+				$cityError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				  <strong>Only lower, upper case, and space characters are allowed</strong>
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+	</div>';
+
+			}
+		} else {
+			$cityError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				  <strong>Please fill your city.</strong>
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+	</div>';
+		}
+		//contact_no check validation 
+		if (isset($_POST['contact_no']) && !empty($_POST['contact_no'])) {
+			if (preg_match('/\d{11}/', $_POST['contact_no'])) {
+				$contact = $_POST['contact_no'];
+			} else {
+				$contactError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>Contains only 11 numbers</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>';
+
+			}
+		} else {
+			$contactError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>Please fill contact.</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>';
+		}
+		//email input check validation 
+		if (isset($_POST['email']) && !empty($_POST['email'])) {
+			$pattern = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
+			if (preg_match($pattern, $_POST['email'])) {
+				$check_email = $_POST['email'];
+
+				$sql = "SELECT email FROM donor WHERE email='$check_email'";
+				$result = mysqli_query($connection, $sql);
+				if (mysqli_num_rows($result) > 0) {
+					$emialError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>Sorry this email already exists.</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>';
+
+				} else {
+					$email = $_POST['email'];
+				}
+
+
+			} else {
+				$emailError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>Please enter valid email address.</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>';
+
+			}
+		} else {
+			$emailError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>Please fill your email address.</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>';
+		}
+		//insert the data into database
+
+		if (isset($name) && isset($blood_group) && isset($gender) && isset($day)
+		 && isset($month) && isset($year) && isset($email) && isset($contact) && 
+		isset($city) ) {
+
+
+			$DonorDOB = $year . "-" . $month . "-" . $day;
+
+
+			
+
+
+			$sql = "UPDATE DONOR 
+        SET name='$name', gender='$gender', email='$email', city='$city', dob='$DonorDOB', contact_no='$contact', save_life_date='0', blood_group='$blood_group' 
+        WHERE id=" . $_SESSION['user_id'];
+
+
+			if (mysqli_query($connection, $sql)) {
+				?>
+				<script>
+					function myFunction(){
+						location.reload();
+					}
+				</script>
+<?php
+			} else {
+				$updateError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>OOps!!! Data Not Updated.Try again</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>';
+			}
+
+		}
+
+
+		//terms and conditions 
+	
+
+
+}
+if(isset($_POST['update_pass'])){
+	if (isset($_POST['old_password']) && !empty($_POST['old_password']) && isset($_POST['c_password']) && !empty($_POST['c_password']) && isset($_POST['new_password
+	']) && !empty($_POST['new_password'])) {
+         
+		$oldpassword=md5($_POST['$oldpassword']);
+     if($oldpassword==$dbpassword){
+        if (strlen($_POST['new_password']) >= 6) {
+			if ($_POST['new_password'] == $_POST['c_password']) {
+				$password = $_POST['password'];
+
+			} else {
+				$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Passwords are not same.</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	<span aria-hidden="true">&times;</span>
+  </button>
+</div>';
+			}
+
+		} else {
+			$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>The password should be of 6 characters.</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	<span aria-hidden="true">&times;</span>
+  </button>
+</div>';
+		}
+	 }
+	 else{
+		$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<strong>Please Enter the valid password</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>';
+
+	 }
+		
+
+	} else {
+		$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Passwords are not same.</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	<span aria-hidden="true">&times;</span>
+  </button>
+</div>';
+	}
+	if(isset($password)){
+		$sql = "UPDATE donor SET  password='$password' WHERE id='$userID'";
+
+		if(mysqli_query($connection,$sql)){
+
+			$_SESSION['save_life_date']=$current_date;
+			header("Location: index.php");
+		}
+		else{
+			$submitError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<strong>OOps!!! some thing went wrong.Try again.</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>';
+		}
+	}
+
+}
+include 'include/sidebar.php';
 ?>
 
 <style>
@@ -45,7 +307,8 @@
 					<div class="panel panel-default" style="padding: 20px;">
 					
 					<!-- Error Messages -->	
-
+                 <?php if(isset($updateError)) echo $updateError;
+				 ?>
 
 					<form class="form-group" action="" method="post" >
 				<div class="form-group">
@@ -389,7 +652,7 @@
 
 				<div class="form-group">
 					<button id="submit" name="submit" type="submit" class="btn btn-lg btn-danger center-aligned"
-						style="margin-top: 20px;">SignUp</button>
+						style="margin-top: 20px;">Update the details</button>
 				</div>
 			</form>
 					</div>
@@ -399,7 +662,8 @@
 					
 
 					<!-- Messages -->	
-
+					<?php if(isset($passwordError)) echo $passwordError;
+					?>
 						<form action="" method="post" class="form-group form-container" >
 							
 							<div class="form-group">
@@ -407,7 +671,7 @@
 								<input type="password" required name="old_password" placeholder="Current Password" class="form-control">
 							</div>
 							<div class="form-group">
-								<label for="newpassword">New Password</label>
+								<label for="new_password">New Password</label>
 								<input type="password" required name="new_password" placeholder="New Password" class="form-control">
 							</div>
 							<div class="form-group">
@@ -425,7 +689,7 @@
 				<div class="card col-md-6 offset-md-3">
 					
 					<!-- Display Message -->
-
+                    
 					<div class="panel panel-default" style="padding: 20px;">
 						<form action="" method="post" class="form-group form-container" >
 							
