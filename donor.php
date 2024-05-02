@@ -112,7 +112,29 @@
 
    		}
    		else{
-   			echo'
+			$start = date_create($row['save_life_date']);
+
+								$end=date_create();
+								$diff =date_diff($start,$end);
+								
+								$diffMonth=$diff->m;
+								
+								
+                                
+								 if($diffMonth>=3 ){
+									echo'
+									<div class="col-md-3 col-sm-12 col-lg-3 donors_data">
+									<span class="name">'.$row['name'].'</span>
+									<span>'.$row['city'].'</span>
+									<span>'.$row['blood_group'].'</span>
+									<span>'.$row['gender'].'</span>
+									<span>'.$row['email'].'</span>
+									<span>'.$row['contact_no'].'</span>
+								
+									</div>';
+								 }
+								 else{
+									echo'
    			<div class="col-md-3 col-sm-12 col-lg-3 donors_data">
    			<span class="name">'.$row['name'].'</span>
    			<span>'.$row['city'].'</span>
@@ -120,6 +142,8 @@
    			<span>'.$row['gender'].'</span>
    			<h4 class="name text-center">Donated</h4>
    			</div>';
+								 }
+   			
 
 
    		}
@@ -128,6 +152,7 @@
 
    }
    else{
+
    	echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 		  <strong>Data Not Found.</strong>
 		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
