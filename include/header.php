@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 	<head>
-		<title>Donate The Blood</title>
+		<title>BLOOD BOND</title>
 		<meta charset="utf-8">
 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

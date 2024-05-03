@@ -6,15 +6,19 @@
 						<hr class="white-bar">
 
 							<h1 class="text-center">
-								<a  target="_blank" href="https://www.facebook.com/exceptionalprogrammers"><i style="color: #fff;" class="fab fa-facebook-square"></i></a>
+								<a  target="_blank" href=""><i style="color: #fff;" class="fab fa-facebook-square"></i></a>
+								
 
-								<a target="_blank" href="https://www.youtube.com/exceptionalprogrammers"><i style="color: #fff;" class="fab fa-youtube-square"></i></a> 
+								<a target="_blank" href=""><i style="color: #fff;" class="fab fa-youtube-square"></i></a> 
+								
 							</h1>
 
 							<div class="details">
-								 <p><i class="fa fa-phone"></i>1234567890
+								 <p><i class="fa fa-phone"></i>630403292
 								
-								abc@gmail.com <i class="fa fa-envelope"></i>  </p>
+							    <br>
+								<br>
+								mvikram13442@gmail.com <i class="fa fa-envelope"></i>  </p>
 							</div>
 
 					</div>

@@ -9,7 +9,24 @@ if (
 ) {
 	
 
+	$sql = "SELECT * FROM donor  where id=" . $_SESSION['user_id'];
+	$result = mysqli_query($connection, $sql);
+	if (mysqli_num_rows($result) > 0) {
+		while ($row = mysqli_fetch_assoc($result)) {
+			$userID = $row['id'];
+			$name = $row['name'];
+			$blood_group = $row['blood_group'];
+			$gender = $row['gender'];
+			$email = $row['email'];
+			$contact = $row['contact_no'];
+			$city = $row['city'];
 
+			$dob = $row['dob'];
+			$date = explode("-", $dob);
+			$dbPassword = $row['password'];
+
+		}
+	}
 
 	
 	
@@ -215,24 +232,24 @@ if (
 
 
 	}
-	$sql = "SELECT * FROM donor  where id=" . $_SESSION['user_id'];
-	$result = mysqli_query($connection, $sql);
-	if (mysqli_num_rows($result) > 0) {
-		while ($row = mysqli_fetch_assoc($result)) {
-			$userID = $row['id'];
-			$name = $row['name'];
-			$blood_group = $row['blood_group'];
-			$gender = $row['gender'];
-			$email = $row['email'];
-			$contact = $row['contact_no'];
-			$city = $row['city'];
+	// $sql = "SELECT * FROM donor  where id=" . $_SESSION['user_id'];
+	// $result = mysqli_query($connection, $sql);
+	// if (mysqli_num_rows($result) > 0) {
+	// 	while ($row = mysqli_fetch_assoc($result)) {
+	// 		$userID = $row['id'];
+	// 		$name = $row['name'];
+	// 		$blood_group = $row['blood_group'];
+	// 		$gender = $row['gender'];
+	// 		$email = $row['email'];
+	// 		$contact = $row['contact_no'];
+	// 		$city = $row['city'];
 
-			$dob = $row['dob'];
-			$date = explode("-", $dob);
-			$dbPassword = $row['password'];
+	// 		$dob = $row['dob'];
+	// 		$date = explode("-", $dob);
+	// 		$dbPassword = $row['password'];
 
-		}
-	}
+	// 	}
+	// }
 	if (isset($_POST['update_pass'])) 
 	{
 		if (isset($_POST['old_password']) && !empty($_POST['old_password']) 
@@ -791,29 +808,9 @@ if (
 
 
 		
-			<div class="card col-md-6 offset-md-3">
 
 				<!-- Display Message -->
-				<?php if(isset($deleteAccountError)) echo $deleteAccountError;
 				
-				?>
-
-				<div class="panel panel-default" style="padding: 20px;">
-					<form action="" method="post" class="form-group form-container">
-             
-						<div class="form-group">
-							<label for="oldpassword">Password</label>
-							<input type="password" required name="account_password" placeholder="Current Password"
-								class="form-control">
-						</div>
-
-						<div class="form-group">
-							<button class="btn btn-lg btn-danger center-aligned" type="submit" name="delete_account">Delete
-								Account</button>
-						</div>
-
-					</form>
-				</div>
 			</div>
 
 		</div>

@@ -58,7 +58,7 @@
 							
 							
 						</p>
-						<a href="#" class="btn btn-default btn-lg text-center center-aligned">Become a Life Saver!</a>
+						<a href="donate.php" class="btn btn-default btn-lg text-center center-aligned">Become a Life Saver!</a>
 					</div>
 				</div>
 			</div>
@@ -72,7 +72,7 @@
      						<h3 class="text-center red">Our Vission</h3>
 								<img src="img/binoculars.png" alt="Our Vission" class="img img-responsive" width="168" height="168">
 								<p class="text-center">
-								Making blood donation accessible to all, ensuring nobody suffers due to a shortage of blood.
+								Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
 								</p>
 						</div>
     				</div>
@@ -82,7 +82,17 @@
       							<h3 class="text-center red">Our Goal</h3>
 								<img src="img/target.png" alt="Our Vission" class="img img-responsive" width="168" height="168">
 								<p class="text-center">
-								Streamlining the blood donation process to save more lives efficiently
+								
+
+🩸 <B>BLOOD DONATION CAMP </B>🩸<BR>
+
+Join us for a noble cause!<BR>
+
+<B>Date:</B> [29-05-2024]<BR>
+<B>Time:</B> [10AM-4PM]<BR><B>
+Location: </B>[SRM UNIVERSITY ,MANGALGIRI ,GUNTUR, 502522 ]<BR>
+<B>
+Your donation can save lives! Let's come together to make a difference. See you there!</B>
 								</p>
 						</div>
     				</div>
@@ -92,7 +102,7 @@
       						<h3 class="text-center red">Our Mission</h3>
 								<img src="img/goal.png" alt="Our Vission" class="img img-responsive" width="168" height="168">
 								<p class="text-center">
-								Spreading awareness and encouraging voluntary donations to meet the blood needs of every patient in need.
+								Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
 								</p>
 							</div>
    			 		</div>
